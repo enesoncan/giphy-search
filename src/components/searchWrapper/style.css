@@ -1,0 +1,22 @@
+.search-wrapper {
+  padding: 20px;
+  margin: 50px 0;
+  width: 600px;
+  height: 60px;
+  left: 50%;
+  position: relative;
+  display: flex;
+  border-radius: 4px;
+  background-color: #f8f5f8;
+  justify-content: center;
+  line-height: 60px;
+  transform: translate(-50%, 0);
+}
+
+.search-box,
+.search-btn {
+  border: none;
+  border-radius: 4px;
+  outline: none !important;
+  font-family: 'Montserrat', sans-serif;
+}
