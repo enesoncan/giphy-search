@@ -15,6 +15,12 @@ class Content extends Component {
     this.fetchImages('');
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searchTerm !== this.props.searchTerm) {
+      this.fetchImages(nextProps.searchTerm);
+    }
+  }
+
   fetchImages = (query) => {
     if (!query) {
       query = 'sponge bob';
@@ -30,12 +36,6 @@ class Content extends Component {
         });
       });
   };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.searchTerm !== this.props.searchTerm) {
-      this.fetchImages(nextProps.searchTerm);
-    }
-  }
 
   render() {
     return (

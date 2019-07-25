@@ -16,7 +16,30 @@
 .search-box,
 .search-btn {
   border: none;
+  margin-top: 10px;
   border-radius: 4px;
   outline: none !important;
   font-family: 'Montserrat', sans-serif;
+}
+.search-box {
+  width: 300px;
+  height: 40px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+  font-size: 16px;
+  padding-left: 10px;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.search-btn {
+  width: 80px;
+  height: 40px;
+  padding: 0;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #61c946;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }

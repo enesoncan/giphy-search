@@ -23,8 +23,10 @@ class SearchWrapper extends Component {
   render() {
     return (
       <div className="search-wrapper">
-        <input type="text" onChange={this.handleInputChange} />
-        <button onClick={this.handleClick}>ARA!</button>
+        <input type="text" className="search-box" placeholder="Arama Yap" onChange={this.handleInputChange} />
+        <button type="button" className="search-btn" onClick={this.handleClick}>
+          ARA
+        </button>
       </div>
     );
   }
