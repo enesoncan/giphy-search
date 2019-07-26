@@ -9,7 +9,7 @@
 .column-6 {
   width: 25%;
   margin: 0;
-  padding: 10px 0;
+  padding: 10px 0 5px;
   border-radius: 4px;
   margin-right: 10px;
   margin-bottom: 20px;
@@ -20,4 +20,21 @@
 .column-6 img {
   max-width: 290px;
   min-height: 290px;
+  max-height: 290px;
+}
+.copy-btn {
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  padding: 8px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none !important;
+  transition: 0.3s;
+  background: #61c946;
+}
+.copy-btn:hover {
+  box-shadow: 0 0 3px 1px rgba(97, 201, 70, 0.5);
 }

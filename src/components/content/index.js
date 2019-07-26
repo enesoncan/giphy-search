@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import { API_KEY } from '../constant/index.js';
 
 class Content extends Component {
   constructor(props) {
@@ -23,9 +24,9 @@ class Content extends Component {
 
   fetchImages = (query) => {
     if (!query) {
-      query = 'sponge bob';
+      query = 'highlights';
     }
-    fetch(`http://api.giphy.com/v1/gifs/search?api_key=AzgDQDYFJ1PW4UjxbftbWXBQC0ZSwbPh&q=${query}`)
+    fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}`)
       .then((results) => {
         return results.json();
       })
@@ -37,6 +38,12 @@ class Content extends Component {
       });
   };
 
+  myFunction = (index) => {
+    const { gifs } = this.state;
+    let copyText = gifs[index].url;
+    navigator.clipboard.writeText(copyText);
+  };
+
   render() {
     return (
       <div className="gifs-wrapper">
@@ -44,6 +51,9 @@ class Content extends Component {
           return (
             <div key={`${index}-gif`} className="column-6">
               <img src={gif.images.original.url} alt="Gif" />
+              <button className="copy-btn" onClick={() => this.myFunction(index)}>
+                Copy Url
+              </button>
             </div>
           );
         })}
