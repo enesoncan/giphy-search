@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import copy_icon from '../../copy.png';
 import { API_KEY } from '../constant/index.js';
 
 class Content extends Component {
@@ -50,9 +51,10 @@ class Content extends Component {
         {this.state.gifs.map((gif, index) => {
           return (
             <div key={`${index}-gif`} className="column-6">
-              <img src={gif.images.original.url} alt="Gif" />
+              <img className="gif" src={gif.images.original.url} alt="Gif" />
               <button className="copy-btn" onClick={() => this.myFunction(index)}>
-                Copy Url
+                <img src={copy_icon} alt="Copy Icon" />
+                <span>Copy Url</span>
               </button>
             </div>
           );
