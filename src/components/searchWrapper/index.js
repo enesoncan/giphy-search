@@ -20,10 +20,23 @@ class SearchWrapper extends Component {
     onSubmitClick(inputValue);
   };
 
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      const { inputValue } = this.state;
+      const { onSubmitClick } = this.props;
+      onSubmitClick(inputValue);
+    }
+  };
   render() {
     return (
       <div className="search-wrapper">
-        <input type="text" className="search-box" placeholder="Gif Ara" onChange={this.handleInputChange} />
+        <input
+          type="text"
+          className="search-box"
+          placeholder="Gif Ara"
+          onChange={this.handleInputChange}
+          onKeyDown={this.handleKeyDown}
+        />
         <button type="button" className="search-btn" onClick={this.handleClick}>
           ARA
         </button>

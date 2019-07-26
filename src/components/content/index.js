@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import copy_icon from '../../copy.png';
+import spinner from '../../grey_spinner.gif';
 import { API_KEY } from '../constant/index.js';
 
 class Content extends Component {
@@ -9,7 +10,7 @@ class Content extends Component {
 
     this.state = {
       gifs: [],
-      isLoaded: false,
+      isLoaded: true,
     };
   }
 
@@ -36,10 +37,17 @@ class Content extends Component {
         this.setState({
           gifs,
         });
+        this.setState({
+          isLoaded: false,
+        });
       });
+    this.setState({
+      isLoaded: true,
+    });
+    console.log(this.state.isLoaded);
   };
 
-  myFunction = (index) => {
+  onCopy = (index) => {
     const { gifs } = this.state;
     let copyText = gifs[index].url;
     navigator.clipboard.writeText(copyText);
@@ -48,17 +56,23 @@ class Content extends Component {
   render() {
     return (
       <div className="gifs-wrapper">
-        {this.state.gifs.map((gif, index) => {
-          return (
-            <div key={`${index}-gif`} className="column-6">
-              <img className="gif" src={gif.images.original.url} alt="Gif" />
-              <button className="copy-btn" onClick={() => this.myFunction(index)}>
-                <img src={copy_icon} alt="Copy Icon" />
-                <span>Copy Url</span>
-              </button>
-            </div>
-          );
-        })}
+        {this.state.isLoaded || !this.state.gifs ? (
+          <div className="loading">
+            <img src={spinner} alt="Loading Spinner" />
+          </div>
+        ) : (
+          this.state.gifs.map((gif, index) => {
+            return (
+              <div key={`${index}-gif`} className="column-6">
+                <img className="gif" src={gif.images.original.url} alt="Gif" />
+                <button className="copy-btn" onClick={() => this.onCopy(index)}>
+                  <img src={copy_icon} alt="Copy Icon" />
+                  <span>Copy Url</span>
+                </button>
+              </div>
+            );
+          })
+        )}
       </div>
     );
   }
