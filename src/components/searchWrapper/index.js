@@ -12,6 +12,11 @@ class SearchWrapper extends Component {
 
   handleInputChange = (e) => {
     this.setState({ inputValue: e.target.value });
+    // if (this.state.inputValue.length >= 2) {
+    //   const { inputValue } = this.state;
+    //   const { onSubmitClick } = this.props;
+    //   onSubmitClick(inputValue);
+    // }
   };
 
   handleClick = () => {

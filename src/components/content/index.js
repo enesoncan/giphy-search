@@ -10,7 +10,7 @@ class Content extends Component {
 
     this.state = {
       gifs: [],
-      isLoaded: true,
+      isLoaded: false,
     };
   }
 
@@ -38,11 +38,11 @@ class Content extends Component {
           gifs,
         });
         this.setState({
-          isLoaded: false,
+          isLoaded: true,
         });
       });
     this.setState({
-      isLoaded: true,
+      isLoaded: false,
     });
     console.log(this.state.isLoaded);
   };
@@ -56,7 +56,7 @@ class Content extends Component {
   render() {
     return (
       <div className="gifs-wrapper">
-        {this.state.isLoaded || !this.state.gifs ? (
+        {!this.state.isLoaded || !this.state.gifs ? (
           <div className="loading">
             <img src={spinner} alt="Loading Spinner" />
           </div>
