@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import './style.css';
+import React, { Component } from "react";
+import "./style.css";
 
 class SearchWrapper extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      inputValue: '',
+      inputValue: null
     };
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     this.setState({ inputValue: e.target.value });
-    // if (this.state.inputValue.length >= 2) {
-    //   const { inputValue } = this.state;
-    //   const { onSubmitClick } = this.props;
-    //   onSubmitClick(inputValue);
-    // }
+    if (e.target.value.length > 2) {
+      const { onSubmitClick } = this.props;
+      onSubmitClick(e.target.value);
+    }
   };
 
   handleClick = () => {
@@ -25,13 +24,14 @@ class SearchWrapper extends Component {
     onSubmitClick(inputValue);
   };
 
-  handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+  handleKeyDown = e => {
+    if (e.key === "Enter") {
       const { inputValue } = this.state;
       const { onSubmitClick } = this.props;
       onSubmitClick(inputValue);
     }
   };
+
   render() {
     return (
       <div className="search-wrapper">

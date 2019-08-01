@@ -1,18 +1,18 @@
-import React from 'react';
-import './App.css';
-import SearchWrapper from './components/searchWrapper';
-import Content from './components/content';
+import React from "react";
+import "./App.css";
+import SearchWrapper from "./components/searchWrapper";
+import Content from "./components/content";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      searchTerm: '',
+      searchTerm: ""
     };
   }
 
-  handleSubmitClick = (value) => {
+  handleSubmitClick = value => {
     this.setState({ searchTerm: value });
   };
 
