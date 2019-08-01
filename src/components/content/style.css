@@ -34,16 +34,29 @@
   border: 5px solid #f8f5f8;
 }
 .column-6 img.gif {
+  z-index: 9;
+  position: relative;
   max-width: 290px;
   min-height: 290px;
   max-height: 290px;
 }
+
+.image-spinner {
+  position: absolute;
+  z-index: 1;
+  width: 90px;
+  float: left;
+  display: flex;
+  margin-top: calc(290px / 2);
+  margin-left: calc(290px / 2);
+}
+
 .copy-btn {
   display: flex;
   margin-left: 15px;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 8px 12px;
   margin-top: 15px;
   border: none;

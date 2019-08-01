@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './style.css';
-import copy_icon from '../../copy.png';
-import spinner from '../../grey_spinner.gif';
-import { API_KEY } from '../constant/index.js';
+import React, { Component } from "react";
+import "./style.css";
+import copy_icon from "../../copy.png";
+import spinner from "../../grey_spinner.gif";
+import { API_KEY } from "../constant/index.js";
 
 class Content extends Component {
   constructor(props) {
@@ -10,12 +10,12 @@ class Content extends Component {
 
     this.state = {
       gifs: [],
-      isLoaded: false,
+      isLoaded: false
     };
   }
 
   componentDidMount() {
-    this.fetchImages('');
+    this.fetchImages("");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,30 +24,29 @@ class Content extends Component {
     }
   }
 
-  fetchImages = (query) => {
+  fetchImages = query => {
     if (!query) {
-      query = 'highlights';
+      query = "highlights";
     }
     fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}`)
-      .then((results) => {
+      .then(results => {
         return results.json();
       })
-      .then((json) => {
+      .then(json => {
         const gifs = json.data;
         this.setState({
-          gifs,
+          gifs
         });
         this.setState({
-          isLoaded: true,
+          isLoaded: true
         });
       });
     this.setState({
-      isLoaded: false,
+      isLoaded: false
     });
-    console.log(this.state.isLoaded);
   };
 
-  onCopy = (index) => {
+  onCopy = index => {
     const { gifs } = this.state;
     let copyText = gifs[index].url;
     navigator.clipboard.writeText(copyText);
@@ -64,6 +63,7 @@ class Content extends Component {
           this.state.gifs.map((gif, index) => {
             return (
               <div key={`${index}-gif`} className="column-6">
+                <img className="image-spinner" src={spinner} alt="Loading" />
                 <img className="gif" src={gif.images.original.url} alt="Gif" />
                 <button className="copy-btn" onClick={() => this.onCopy(index)}>
                   <img src={copy_icon} alt="Copy Icon" />
