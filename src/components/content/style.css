@@ -1,7 +1,10 @@
+main {
+  padding-bottom: 60px;
+}
 .gifs-wrapper {
   position: relative;
   padding: 0;
-  margin: 50px 0;
+  margin: 50px 0 20px;
   width: 90%;
   left: 50%;
   transform: translate(-50%, 0%);

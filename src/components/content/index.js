@@ -83,35 +83,41 @@ class Content extends Component {
 
   render() {
     return (
-      <div className="gifs-wrapper">
-        {!this.state.isLoaded || !this.state.gifs ? (
-          <div className="loading">
-            <img src={spinner} alt="Loading Spinner" />
-          </div>
-        ) : (
-          this.state.gifs.map((gif, index) => {
-            return (
-              <div key={`${index}-gif`} className="column-6">
-                <img className="image-spinner" src={spinner} alt="Loading" />
-                <img className="gif" src={gif.images.original.url} alt="Gif" />
-                <button className="copy-btn" onClick={() => this.onCopy(index)}>
-                  <img src={copy_icon} alt="Copy Icon" />
-                  <span>Copy Url</span>
-                </button>
-              </div>
-            );
-          })
-        )}
-
-        {!this.state.isLoaded || !this.state.gifs ? (
-          ""
-        ) : (
+      <main>
+        <div className="gifs-wrapper">
+          {!this.state.isLoaded || !this.state.gifs ? (
+            <div className="loading">
+              <img src={spinner} alt="Loading Spinner" />
+            </div>
+          ) : (
+            this.state.gifs.map((gif, index) => {
+              return (
+                <div key={`${index}-gif`} className="column-6">
+                  <img className="image-spinner" src={spinner} alt="Loading" />
+                  <img
+                    className="gif"
+                    src={gif.images.original.url}
+                    alt="Gif"
+                  />
+                  <button
+                    className="copy-btn"
+                    onClick={() => this.onCopy(index)}
+                  >
+                    <img src={copy_icon} alt="Copy Icon" />
+                    <span>Copy Url</span>
+                  </button>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <React.Fragment>
           <Pagination
             gifsData={this.state.allData}
             paginationValue={e => this.getPaginationValue(e)}
           />
-        )}
-      </div>
+        </React.Fragment>
+      </main>
     );
   }
 }
