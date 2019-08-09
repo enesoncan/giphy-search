@@ -10,14 +10,6 @@ class SearchWrapper extends Component {
     };
   }
 
-  handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
-    if (e.target.value.length > 2) {
-      const { onSubmitClick } = this.props;
-      onSubmitClick(e.target.value);
-    }
-  };
-
   handleClick = () => {
     const { inputValue } = this.state;
     const { onSubmitClick } = this.props;
@@ -29,6 +21,14 @@ class SearchWrapper extends Component {
       const { inputValue } = this.state;
       const { onSubmitClick } = this.props;
       onSubmitClick(inputValue);
+    }
+  };
+
+  handleInputChange = e => {
+    this.setState({ inputValue: e.target.value });
+    if (e.target.value.length > 2) {
+      const { onSubmitClick } = this.props;
+      onSubmitClick(e.target.value);
     }
   };
 
