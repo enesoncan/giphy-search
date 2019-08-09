@@ -3,6 +3,7 @@ import "./style.css";
 import copy_icon from "../../copy.png";
 import spinner from "../../grey_spinner.gif";
 import { API_KEY } from "../constant/index.js";
+import Pagination from "../pagination";
 
 class Content extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class Content extends Component {
 
     this.state = {
       gifs: [],
+      allData: "",
       isLoaded: false
     };
   }
@@ -28,14 +30,18 @@ class Content extends Component {
     if (!query) {
       query = "highlights";
     }
-    fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}`)
+    fetch(
+      `http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=21`
+    )
       .then(results => {
         return results.json();
       })
       .then(json => {
+        const allData = json;
         const gifs = json.data;
         this.setState({
-          gifs
+          gifs,
+          allData
         });
         this.setState({
           isLoaded: true
@@ -44,6 +50,29 @@ class Content extends Component {
     this.setState({
       isLoaded: false
     });
+
+    this.getPaginationValue = e => {
+      console.log("value", e.target.value);
+      let pageNumber = e.target.value;
+      fetch(
+        `http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=21&offset=${pageNumber}`
+      )
+        .then(results => {
+          return results.json();
+        })
+        .then(json => {
+          const gifs = json.data;
+          this.setState({
+            gifs
+          });
+          this.setState({
+            isLoaded: true
+          });
+        });
+      this.setState({
+        isLoaded: false
+      });
+    };
   };
 
   onCopy = index => {
@@ -72,6 +101,15 @@ class Content extends Component {
               </div>
             );
           })
+        )}
+
+        {!this.state.isLoaded || !this.state.gifs ? (
+          ""
+        ) : (
+          <Pagination
+            gifsData={this.state.allData}
+            paginationValue={e => this.getPaginationValue(e)}
+          />
         )}
       </div>
     );
