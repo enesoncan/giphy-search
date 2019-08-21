@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import SearchWrapper from "./components/searchWrapper";
+import Search from "./components/search";
 import Content from "./components/content";
 import Contact from "./components/contact";
 import Nav from "./components/navigation";
@@ -27,7 +27,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/contact" component={Contact} />
             <Route path="/" exact>
-              <SearchWrapper onSubmitClick={this.handleSubmitClick} />
+              <Search onSubmitClick={this.handleSubmitClick} />
               <Content searchTerm={this.state.searchTerm} />
             </Route>
           </Switch>

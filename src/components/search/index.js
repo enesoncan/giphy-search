@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 
-class SearchWrapper extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
 
@@ -38,15 +38,15 @@ class SearchWrapper extends Component {
         <input
           type="text"
           className="search-box"
-          placeholder="Gif Ara"
+          placeholder="Enter Gif Tag"
           onChange={this.handleInputChange}
           onKeyDown={this.handleKeyDown}
         />
         <button type="button" className="search-btn" onClick={this.handleClick}>
-          ARA
+          SEARCH
         </button>
       </div>
     );
   }
 }
-export default SearchWrapper;
+export default Search;
