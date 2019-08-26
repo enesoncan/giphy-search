@@ -11,7 +11,10 @@ class Contact extends Component {
       id: "",
       title: "",
       body: "",
-      errorMessage: ""
+      errorUserId: "",
+      errorId: "",
+      errorTitle: "",
+      errorBody: ""
     };
   }
 
@@ -23,9 +26,8 @@ class Contact extends Component {
     e.preventDefault();
     console.log(this.state);
     const { userId, id, title, body } = this.state;
-    if (!userId || !id || !title || !body) {
-      this.setState({ errorMessage: "can not be empty" });
-    } else {
+
+    if (userId && id && title && body) {
       axios
         .post("http://jsonplaceholder.typicode.com/posts", this.state)
         .then(response => {
@@ -34,15 +36,47 @@ class Contact extends Component {
         .catch(error => {
           console.log(error);
         });
-      this.setState({
-        errorMessage: ""
-      });
+    }
+    if (!userId) {
+      this.setState({ errorUserId: "please enter user id" });
+    }
+    if (!id) {
+      this.setState({ errorId: "please enter id" });
+    }
+    if (!title) {
+      this.setState({ errorTitle: "please enter title" });
+    }
+    if (!body) {
+      this.setState({ errorBody: "please enter body" });
+    }
+
+    if (userId) {
+      this.setState({ errorUserId: "" });
+    }
+    if (id) {
+      this.setState({ errorId: "" });
+    }
+    if (title) {
+      this.setState({ errorTitle: "" });
+    }
+    if (body) {
+      this.setState({ errorBody: "" });
     }
   };
+
   render() {
-    const { userId, id, title, body, errorMessage } = this.state;
+    const {
+      userId,
+      id,
+      title,
+      body,
+      errorUserId,
+      errorId,
+      errorTitle,
+      errorBody
+    } = this.state;
     return (
-      <div>
+      <div className="contact">
         <form onSubmit={this.submitHandler}>
           <input
             type="text"
@@ -51,6 +85,13 @@ class Contact extends Component {
             placeholder="userId"
             onChange={this.changeHandler}
           />
+          {errorUserId ? (
+            <div className="error-msg">
+              <p>{errorUserId}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <input
             type="text"
             name="id"
@@ -58,6 +99,13 @@ class Contact extends Component {
             placeholder="id"
             onChange={this.changeHandler}
           />
+          {errorId ? (
+            <div className="error-msg">
+              <p>{errorId}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <input
             type="text"
             name="title"
@@ -65,6 +113,13 @@ class Contact extends Component {
             placeholder="title"
             onChange={this.changeHandler}
           />
+          {errorTitle ? (
+            <div className="error-msg">
+              <p>{errorTitle}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <input
             type="text"
             name="body"
@@ -72,8 +127,14 @@ class Contact extends Component {
             placeholder="body"
             onChange={this.changeHandler}
           />
+          {errorBody ? (
+            <div className="error-msg">
+              <p>{errorBody}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <button type="submit">Submit</button>
-          <p>{errorMessage}</p>
         </form>
       </div>
     );
