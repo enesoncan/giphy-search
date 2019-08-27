@@ -8,13 +8,9 @@ class Contact extends Component {
 
     this.state = {
       userId: "",
-      id: "",
       title: "",
       body: "",
-      errorUserId: "",
-      errorId: "",
-      errorTitle: "",
-      errorBody: ""
+      errors: { errorUserId: "", errorTitle: "", errorBody: "" }
     };
   }
 
@@ -25,9 +21,9 @@ class Contact extends Component {
   submitHandler = e => {
     e.preventDefault();
     console.log(this.state);
-    const { userId, id, title, body } = this.state;
+    const { userId, title, body } = this.state;
 
-    if (userId && id && title && body) {
+    if (userId && title && body) {
       axios
         .post("http://jsonplaceholder.typicode.com/posts", this.state)
         .then(response => {
@@ -40,9 +36,6 @@ class Contact extends Component {
     if (!userId) {
       this.setState({ errorUserId: "please enter user id" });
     }
-    if (!id) {
-      this.setState({ errorId: "please enter id" });
-    }
     if (!title) {
       this.setState({ errorTitle: "please enter title" });
     }
@@ -53,9 +46,7 @@ class Contact extends Component {
     if (userId) {
       this.setState({ errorUserId: "" });
     }
-    if (id) {
-      this.setState({ errorId: "" });
-    }
+
     if (title) {
       this.setState({ errorTitle: "" });
     }
@@ -67,11 +58,9 @@ class Contact extends Component {
   render() {
     const {
       userId,
-      id,
       title,
       body,
       errorUserId,
-      errorId,
       errorTitle,
       errorBody
     } = this.state;
@@ -88,20 +77,6 @@ class Contact extends Component {
           {errorUserId ? (
             <div className="error-msg">
               <p>{errorUserId}</p>
-            </div>
-          ) : (
-            ""
-          )}
-          <input
-            type="text"
-            name="id"
-            value={id}
-            placeholder="id"
-            onChange={this.changeHandler}
-          />
-          {errorId ? (
-            <div className="error-msg">
-              <p>{errorId}</p>
             </div>
           ) : (
             ""
