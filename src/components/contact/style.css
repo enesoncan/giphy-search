@@ -6,27 +6,30 @@
   position: relative;
   display: flex;
   border-radius: 4px;
-  background-color: #f1f5f8;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px -5px;
   justify-content: center;
   line-height: 60px;
   transform: translate(-50%, 0);
 }
 
 .contact form input {
+  width: 310px;
+  height: 26px;
   display: flex;
   margin-top: 15px;
   padding: 6px 15px;
-  width: 290px;
-  height: 24px;
-  background-color: rgba(0, 0, 0, 0.08);
-  border: none;
-  border-radius: 4px;
   outline: none;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
   color: #333;
   font-size: 12px;
   font-family: "Montserrat", arial, helvetica;
+  transition: 200ms;
 }
-
+.contact form input:focus {
+  border-color: #61c94688;
+}
 .error-msg {
   height: 25px;
   display: flex;
@@ -50,8 +53,14 @@
   border: none;
   outline: none;
   cursor: pointer;
+  border: 2px solid #61c946;
   background-color: #61c946;
   color: #fff;
   font-size: 14px;
   font-family: "Montserrat", arial, helvetica;
+  transition: 200ms;
+}
+.contact form button:hover {
+  color: #61c946;
+  background-color: transparent;
 }
