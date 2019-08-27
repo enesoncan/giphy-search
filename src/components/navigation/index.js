@@ -3,16 +3,6 @@ import "./style.css";
 import { NavLink } from "react-router-dom";
 
 class Nav extends Component {
-  state = {
-    active: false
-  };
-
-  activeHandler = () => {
-    this.setState({
-      active: !this.state.active
-    });
-  };
-
   render() {
     return (
       <ul className="navigate">
