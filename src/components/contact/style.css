@@ -30,6 +30,9 @@
 .contact form input:focus {
   border-color: #61c94688;
 }
+.contact form input.error-input {
+  border-color: #ff0000aa;
+}
 .error-msg {
   height: 25px;
   display: flex;
