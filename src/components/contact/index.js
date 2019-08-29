@@ -10,7 +10,9 @@ class Contact extends Component {
       userId: "",
       title: "",
       body: "",
-      errors: { errorUserId: "", errorTitle: "", errorBody: "" }
+      errorUserId: "",
+      errorTitle: "",
+      errorBody: ""
     };
   }
 
@@ -33,26 +35,11 @@ class Contact extends Component {
           console.log(error);
         });
     }
-    if (!userId) {
-      this.setState({ errorUserId: "please enter user id" });
-    }
-    if (!title) {
-      this.setState({ errorTitle: "please enter title" });
-    }
-    if (!body) {
-      this.setState({ errorBody: "please enter body" });
-    }
-
-    if (userId) {
-      this.setState({ errorUserId: "" });
-    }
-
-    if (title) {
-      this.setState({ errorTitle: "" });
-    }
-    if (body) {
-      this.setState({ errorBody: "" });
-    }
+    this.setState({
+      errorUserId: userId ? "" : "please enter user id",
+      errorTitle: title ? "" : "please enter title",
+      errorBody: body ? "" : "please enter body"
+    });
   };
 
   render() {
@@ -73,6 +60,7 @@ class Contact extends Component {
             value={userId}
             placeholder="userId"
             onChange={this.changeHandler}
+            className={errorUserId ? "error-input" : null}
           />
           {errorUserId ? (
             <div className="error-msg">
@@ -87,6 +75,7 @@ class Contact extends Component {
             value={title}
             placeholder="title"
             onChange={this.changeHandler}
+            className={errorTitle ? "error-input" : null}
           />
           {errorTitle ? (
             <div className="error-msg">
@@ -101,6 +90,7 @@ class Contact extends Component {
             value={body}
             placeholder="body"
             onChange={this.changeHandler}
+            className={errorBody ? "error-input" : null}
           />
           {errorBody ? (
             <div className="error-msg">
